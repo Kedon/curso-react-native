@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text, View, Button } from 'react-native';
 
 const Routes = {
-  HOME: "drink_water_homey",
+  HOME: "drink_water_home",
   DETAILS: "drink_water_details",
 }
 function HomeScreen({ navigation }) {

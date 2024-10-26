@@ -14,8 +14,12 @@ export default function PagesNavigation() {
         <Tab.Screen 
           options={{ headerShown: false}}
           name="Beber Água" component={DrinkWaterNavigation} />
-        <Tab.Screen name="Calorias" component={CaloriesNavigation} />
-        <Tab.Screen name="TMB" component={BmrNavigationNavigation} />
+        <Tab.Screen 
+          options={{ headerShown: false}}
+          name="Calorias" component={CaloriesNavigation} />
+        <Tab.Screen 
+          options={{ headerShown: false}}
+          name="TMB" component={BmrNavigationNavigation} />
       </Tab.Navigator>
     </NavigationContainer>
   );
