@@ -15,7 +15,11 @@ export default function CaloriesNavigation() {
       <CaloriesStack.Navigator>
         <CaloriesStack.Group
           screenOptions={{
-            headerTitleAlign: 'center'
+            headerTitleAlign: 'center',
+            headerTintColor: '#01796f',
+            headerShadowVisible: false,
+            headerTransparent: true,
+            headerTitleStyle: { fontSize: 18 },
           }}>
           <CaloriesStack.Screen 
             name={Routes.HOME} 

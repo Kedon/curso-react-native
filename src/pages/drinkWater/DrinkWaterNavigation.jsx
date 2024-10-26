@@ -15,7 +15,11 @@ export default function DrinkWaterNavigation() {
       <DrinkWaterStack.Navigator>
         <DrinkWaterStack.Group
           screenOptions={{
-            headerTitleAlign: 'center'
+            headerTitleAlign: 'center',
+            headerTintColor: '#01796f',
+            headerShadowVisible: false,
+            headerTransparent: true,
+            headerTitleStyle: { fontSize: 18 },
           }}>
           <DrinkWaterStack.Screen 
             options={{ title: 'Consumo de água' }}
