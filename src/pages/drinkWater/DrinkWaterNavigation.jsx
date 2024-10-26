@@ -1,33 +1,11 @@
 import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Text, View, Button } from 'react-native';
+import DrinkWaterHome from './home/DrinkWaterHome';
+import DrinkWaterDetails from './details/DrinkWaterDetails';
 
-const Routes = {
+export const Routes = {
   HOME: "drink_water_home",
   DETAILS: "drink_water_details",
-}
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Drink Water!</Text>
-      <Button
-        title="Go to Settings"
-        onPress={() => navigation.navigate(Routes.DETAILS)}
-      />
-    </View>
-  );
-}
-
-function DetailsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-      <Button
-        title="Go to Home"
-        onPress={() => navigation.goBack()}
-      />
-    </View>
-  );
 }
 
 const DrinkWaterStack = createNativeStackNavigator();
@@ -42,11 +20,11 @@ export default function DrinkWaterNavigation() {
           <DrinkWaterStack.Screen 
             options={{ title: 'Consumo de água' }}
             name={Routes.HOME} 
-            component={HomeScreen} />
+            component={DrinkWaterHome} />
           <DrinkWaterStack.Screen
             options={{ title: 'Histórico de consumo de água' }}
             name={Routes.DETAILS}
-            component={DetailsScreen} />
+            component={DrinkWaterDetails} />
           </DrinkWaterStack.Group>
       </DrinkWaterStack.Navigator>
   );
