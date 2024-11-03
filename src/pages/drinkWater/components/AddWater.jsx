@@ -1,10 +1,25 @@
-import { useState } from 'react';
-import {View, Text, StyleSheet, Modal, Pressable} from 'react-native';
+import {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Modal,
+  Pressable,
+  TextInput,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const AddWater = () => {
-    const [modalVisible, setModalVisible] = useState(false);
+const AddWater = ({
+    onAddWater
+}) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [text, onChangeText] = useState('');
 
+  const sendDataToHome = () => {
+    onAddWater(Number(text));
+    setModalVisible(false);
+    onChangeText('');
+  };
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -12,18 +27,34 @@ const AddWater = () => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => setModalVisible(!modalVisible)}>
-        <Pressable style={styles.overlay} onPress={() => setModalVisible(!modalVisible)}>
+        <Pressable
+          style={styles.overlay}
+          onPress={() => setModalVisible(!modalVisible)}>
           <View style={styles.modalView}>
-            <Text>Modal</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+            <Text style={styles.modalTitle}>Quantidade de água consumida</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeText}
+              placeholder="Informe a quantidade de água"
+              value={text}
+              keyboardType="numeric"
+            />
+            <View style={styles.footer}>
+              <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                <Text style={styles.textCancelStyle}>Cancelar</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={sendDataToHome}>
+                <Text style={styles.textStyle}>Adicionar</Text>
+              </Pressable>
+            </View>
           </View>
         </Pressable>
       </Modal>
-      <Pressable style={[styles.button, styles.buttonOpen]} onPress={() => setModalVisible(true)}>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => setModalVisible(true)}>
         <Icon name="add" size={30} color="white" />
       </Pressable>
     </View>
@@ -56,6 +87,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  modalTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   button: {
     borderRadius: 10,
     padding: 10,
@@ -72,5 +107,26 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  textCancelStyle: {
+    color: 'red',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    width: '100%',
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
   },
 });
